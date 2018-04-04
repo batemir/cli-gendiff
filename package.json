@@ -1,6 +1,6 @@
 {
   "name": "gendiff_by_batemir",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "config files difference generation",
   "main": "index.js",
   "bin": {
