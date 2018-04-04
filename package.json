@@ -1,6 +1,6 @@
 {
   "name": "gendiff_by_batemir",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "config files difference generation",
   "main": "index.js",
   "bin": {
@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "babel-node": "babel-node",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build",
@@ -39,9 +39,11 @@
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.10.0"
+    "eslint-plugin-import": "^2.10.0",
+    "jest": "^22.4.3"
   },
   "dependencies": {
-    "commander": "^2.15.1"
+    "commander": "^2.15.1",
+    "lodash": "^4.17.5"
   }
 }
