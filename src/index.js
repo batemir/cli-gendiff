@@ -1,9 +1,11 @@
 import fs from 'fs';
 import _ from 'lodash';
+import getParser from './parsers';
 
+const getData = data => fs.readFileSync(data);
 const gendiff = (before, after) => {
-  const config1 = JSON.parse(fs.readFileSync(before, 'utf-8'));
-  const config2 = JSON.parse(fs.readFileSync(after, 'utf-8'));
+  const config1 = getParser(before)(getData(before));
+  const config2 = getParser(after)(getData(after));
   const keys1 = Object.keys(config1);
   const keys2 = Object.keys(config2);
   const keys = _.union(keys1, keys2);
@@ -15,10 +17,10 @@ const gendiff = (before, after) => {
       return `  - ${key}: ${config1[key]}`;
     }
     if (config1[key] !== config2[key]) {
-      return `  + ${key}: ${config2[key]}\n  - ${key}: ${config1[key]}`;
+      return [`  + ${key}: ${config2[key]}`, `  - ${key}: ${config1[key]}`];
     }
     return `    ${key}: ${config1[key]}`;
-  }).join('\n');
-  return `{\n${answer}\n}`;
+  });
+  return `{\n${_.flatten(answer).join('\n')}\n}`;
 };
 export default gendiff;
