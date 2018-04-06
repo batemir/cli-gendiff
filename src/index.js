@@ -2,7 +2,7 @@ import fs from 'fs';
 import _ from 'lodash';
 import getParser from './parsers';
 
-const getData = data => fs.readFileSync(data);
+const getData = data => fs.readFileSync(data, 'utf-8');
 const gendiff = (before, after) => {
   const config1 = getParser(before)(getData(before));
   const config2 = getParser(after)(getData(after));

@@ -6,6 +6,8 @@ describe('flat gendiff', () => {
   const afterJson = '__tests__/__fixtures__/after.json';
   const beforeYaml = '__tests__/__fixtures__/before.yml';
   const afterYaml = '__tests__/__fixtures__/after.yml';
+  const beforeIni = '__tests__/__fixtures__/before.ini';
+  const afterIni = '__tests__/__fixtures__/after.ini';
   const expected = fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8');
   test('flat json', () => {
     const result = gendiff(beforeJson, afterJson);
@@ -13,6 +15,10 @@ describe('flat gendiff', () => {
   });
   test('flat yaml', () => {
     const result = gendiff(beforeYaml, afterYaml);
+    expect(result).toEqual(expected);
+  });
+  test('flat ini', () => {
+    const result = gendiff(beforeIni, afterIni);
     expect(result).toEqual(expected);
   });
 });
