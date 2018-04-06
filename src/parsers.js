@@ -1,14 +1,16 @@
-import path from 'path';
-import yaml from 'js-yaml';
+import { safeLoad } from 'js-yaml';
 import ini from 'ini';
 
-const getParser = (pathTo) => {
-  const parsers = {
-    '.json': data => JSON.parse(data),
-    '.yaml': data => yaml.safeLoad(data),
-    '.yml': data => yaml.safeLoad(data),
-    '.ini': data => ini.parse(data),
-  };
-  return parsers[path.extname(pathTo)];
+const parsers = {
+  '.json': JSON.parse,
+  '.yaml': safeLoad,
+  '.yml': safeLoad,
+  '.ini': ini.parse,
 };
-export default getParser;
+export default format => (data) => {
+  const parse = parsers[format];
+  if (!parse) {
+    throw new Error(`unkown format: ${format}`);
+  }
+  return parse(data);
+};

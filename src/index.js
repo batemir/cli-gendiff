@@ -1,11 +1,15 @@
 import fs from 'fs';
+import path from 'path';
 import _ from 'lodash';
-import getParser from './parsers';
+import parse from './parsers';
 
-const getData = data => fs.readFileSync(data, 'utf-8');
+const getParsedData = (pathTo) => {
+  const data = fs.readFileSync(pathTo, 'utf-8');
+  return parse(path.extname(pathTo))(data);
+};
 const gendiff = (before, after) => {
-  const config1 = getParser(before)(getData(before));
-  const config2 = getParser(after)(getData(after));
+  const config1 = getParsedData(before);
+  const config2 = getParsedData(after);
   const keys1 = Object.keys(config1);
   const keys2 = Object.keys(config2);
   const keys = _.union(keys1, keys2);
