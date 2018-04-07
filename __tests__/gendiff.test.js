@@ -23,3 +23,24 @@ describe('flat gendiff', () => {
   });
 });
 
+describe('nested gendiff', () => {
+  const beforeJson = '__tests__/__fixtures__/nested/before.json';
+  const afterJson = '__tests__/__fixtures__/nested/after.json';
+  const beforeYaml = '__tests__/__fixtures__/nested/before.yml';
+  const afterYaml = '__tests__/__fixtures__/nested/after.yml';
+  const beforeIni = '__tests__/__fixtures__/nested/before.ini';
+  const afterIni = '__tests__/__fixtures__/nested/after.ini';
+  const expected = fs.readFileSync('__tests__/__fixtures__/nested/expected.txt', 'utf-8');
+  test('nested json', () => {
+    const result = gendiff(beforeJson, afterJson);
+    expect(result).toEqual(expected);
+  });
+  test('nested yaml', () => {
+    const result = gendiff(beforeYaml, afterYaml);
+    expect(result).toEqual(expected);
+  });
+  test('nested ini', () => {
+    const result = gendiff(beforeIni, afterIni);
+    expect(result).toEqual(expected);
+  });
+});
