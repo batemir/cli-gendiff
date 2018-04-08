@@ -4,6 +4,7 @@ import plainRender from './plain';
 const renders = {
   object: objRender,
   plain: plainRender,
+  json: JSON.stringify,
 };
 export default format => (data) => {
   const render = renders[format];

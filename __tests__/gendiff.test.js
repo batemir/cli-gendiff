@@ -9,11 +9,6 @@ describe('flat gendiff', () => {
   const beforeIni = '__tests__/__fixtures__/before.ini';
   const afterIni = '__tests__/__fixtures__/after.ini';
   const expected = fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8');
-  test('plain format', () => {
-    const expectedPlain = fs.readFileSync('__tests__/__fixtures__/plain.txt', 'utf-8');
-    const result = gendiff(beforeJson, afterJson, 'plain');
-    expect(result).toEqual(expectedPlain);
-  });
   test('flat json', () => {
     const result = gendiff(beforeJson, afterJson);
     expect(result).toEqual(expected);
@@ -36,6 +31,11 @@ describe('nested gendiff', () => {
   const beforeIni = '__tests__/__fixtures__/nested/before.ini';
   const afterIni = '__tests__/__fixtures__/nested/after.ini';
   const expected = fs.readFileSync('__tests__/__fixtures__/nested/expected.txt', 'utf-8');
+  test('plain format', () => {
+    const expectedPlain = fs.readFileSync('__tests__/__fixtures__/nested/plain.txt', 'utf-8');
+    const result = gendiff(beforeJson, afterJson, 'plain');
+    expect(result).toEqual(expectedPlain);
+  });
   test('nested json', () => {
     const result = gendiff(beforeJson, afterJson);
     expect(result).toEqual(expected);

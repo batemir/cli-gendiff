@@ -3,12 +3,12 @@ import program from 'commander';
 import gendiff from '..';
 
 program
-  .version('0.7.0')
+  .version('0.8.0')
   .arguments('<firstConfig> <secondConfig>')
   .option('-f, --format [type]', 'output format', 'object')
   .description('Compares two configuration files and shows a difference.')
-  .action((firstConfig, secondConfig, format) =>
-    console.log(gendiff(firstConfig, secondConfig, format)))
+  .action((firstConfig, secondConfig) =>
+    console.log(gendiff(firstConfig, secondConfig, program.format)))
   .parse(process.argv);
 
 export default program;
