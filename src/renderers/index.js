@@ -1,10 +1,11 @@
 import objRender from './object';
 import plainRender from './plain';
+import jsonRender from './json';
 
 const renders = {
   object: objRender,
   plain: plainRender,
-  json: JSON.stringify,
+  json: jsonRender,
 };
 export default format => (data) => {
   const render = renders[format];
