@@ -26,5 +26,5 @@ Section "group2" deleted.
 - ini
 
 ## Output formats
--plain text
--json
+- plain text
+- json
